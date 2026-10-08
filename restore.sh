@@ -20,3 +20,10 @@ return 1
 fi
 file_number=$((file_num - 1))
 } 
+print_options() {
+    echo "please pick an option :"
+    echo "1: Restore this file back into dir"
+    echo "2: Permanently delete this file from malicious_dir"
+    echo "3: Leave this file as-is and go back to the list"
+    read -p "Enter option: " option 
+}
