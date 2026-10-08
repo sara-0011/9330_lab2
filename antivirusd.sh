@@ -13,5 +13,14 @@ check_file() {
     return 1;
 
 }
-
+scan_dir() {
+for file in "$dir"/*; do
+     if check_file "$file"; then
+     filename=$(basename "$file")
+     new_path="$malicious_dir/$filename"
+     echo "$filename is malicious and it is DELETED" 
+     mv "$file" "$new_path"
+     fi
+done
+}
 
