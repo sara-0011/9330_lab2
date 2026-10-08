@@ -27,3 +27,24 @@ print_options() {
     echo "3: Leave this file as-is and go back to the list"
     read -p "Enter option: " option 
 }
+while true; do
+if ! print_files; then
+echo "exiting"
+break
+fi
+selected="${files[$file_number]}"
+filename=$(basename "$selected")
+print_options
+if [[ $option == 1 ]]; then
+new_path="$dir/$filename"
+mv "$selected" "$new_path"
+echo "Restored $filename to $dir."
+fi
+if [[ $option == 2 ]]; then
+rm "$selected"
+echo "$filename permanently deleted."
+fi
+if [[ $option == 3 ]]; then
+echo "Leaving this file as-is"
+fi
+done
