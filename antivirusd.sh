@@ -23,4 +23,19 @@ for file in "$dir"/*; do
      fi
 done
 }
+if [ -z "$(ls -A "$dir")" ]; then
+echo "The directory is empty."
+else
+scan_dir
+ls -l "$dir" > directory-info.last
+while true; do
+sleep "$interval_secs"
+ls -l "$dir" > directory-info.current
+if ! cmp -s directory-info.last directory-info.current; then
+scan_dir
+ls -l "$dir" > directory-info.last
+fi
+done
+fi
+
 
