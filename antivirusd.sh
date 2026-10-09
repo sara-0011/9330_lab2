@@ -4,6 +4,10 @@ malicious_dir=$2
 interval_secs=$3
 check_file() {
     local file="$1"
+    local filename=$(basename "$file")
+    if grep -F -x -q "$filename" whitelist.txt; then
+    return 1;
+    fi
     if [[ "$file" == *.exe ]] || [[ "$file" == *.bat ]] || [[ "$file" == *.vbs ]] || [[ "$file" == *.scr ]] || [[ "$file" == *.ps1 ]]; then
     return 0;
     fi
