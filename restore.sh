@@ -38,6 +38,7 @@ print_options
 if [[ $option == 1 ]]; then
 new_path="$dir/$filename"
 mv "$selected" "$new_path"
+echo "$filename" >> whitelist.txt
 echo "Restored $filename to $dir."
 fi
 if [[ $option == 2 ]]; then
